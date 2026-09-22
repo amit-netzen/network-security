@@ -78,7 +78,7 @@ data/external/
 
 # Large datasets
 
-*.csv
+
 *.tsv
 *.parquet
 *.feather
