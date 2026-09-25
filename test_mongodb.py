@@ -1,13 +1,19 @@
+import os, pymongo
+from dotenv import load_dotenv
+load_dotenv()
 
-from pymongo import MongoClient
+uri = os.getenv("MONGODB_URI")
+client = pymongo.MongoClient(uri)
 
+# List all databases and collections to see what actually exists
+print("Databases:", client.list_database_names())
 
-# Create a new client and connect to the server
-client = MongoClient(uri)
+db_name = "mehtaAI"
+coll_name = "NetworkData"
 
-# Send a ping to confirm a successful connection
-try:
-    client.admin.command('ping')
-    print("Pinged your deployment. You successfully connected to MongoDB!")
-except Exception as e:
-    print(e)
+db = client[db_name]
+print(f"Collections in '{db_name}':", db.list_collection_names())
+
+coll = db[coll_name]
+print(f"Document count in '{coll_name}':", coll.count_documents({}))
+print("Sample doc:", coll.find_one())

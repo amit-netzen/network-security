@@ -2,7 +2,7 @@ from networksecurity.exception.exception import NetworkSecurityException
 from networksecurity.logging.logger import logging
 
 from networksecurity.entity.config_entity import DataIngestionConfig
-from networksecurity.entity.artifact_config import DataIngestionArtifact
+from networksecurity.entity.artifact_entity import DataIngestionArtifact
 
 import os 
 import sys 
@@ -35,8 +35,10 @@ class DataIngestion:
             collection=self.mongo_client[database_name][collection_name]
 
             df=pd.DataFrame(list(collection.find()))
+            print(f"Database: {database_name}, Collection: {collection_name}")
+            print(f"Rows fetched: {df.shape[0]}")
             if "_id" in df.columns.to_list():
-                df=df.drop(columns=["_id"],axis=1)
+                df=df.drop(columns=["_id"])
             
             df.replace({"na":np.nan},inplace=True)
             return df

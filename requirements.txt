@@ -7,7 +7,13 @@ pymongo[srv]==3.11
 pymongo
 dotenv
 scikit_learn
-
+mlflow
+pyaml
+dagshub
+fastapi
+uvicorn
+python-multipart
+scipy
 
 
 ##-e .
