@@ -14,9 +14,6 @@ class TrainingPipelineConfig:
         self.artifact_dir=os.path.join(self.artifact_name,timestamp)
         self.model_dir=os.path.join("final_model")
         self.timestamp: str=timestamp   
-
-
-
 class DataIngestionConfig:
     def __init__(self,training_pipeline_config:TrainingPipelineConfig):
         self.data_ingestion_dir:str=os.path.join(
@@ -60,4 +57,5 @@ class DataTransformationConfig:
             training_pipeline.TEST_FILE_NAME.replace("csv", "npy"), )
         self.transformed_object_file_path: str = os.path.join( self.data_transformation_dir, training_pipeline.DATA_TRANSFORMATION_TRANSFORMED_OBJECT_DIR,
             training_pipeline.PREPROCESSING_OBJECT_FILE_NAME,)
+        
         
